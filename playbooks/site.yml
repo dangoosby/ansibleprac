@@ -1,0 +1,13 @@
+---
+
+- hosts: all
+
+  roles:
+    - { role: common, dir: /roles/common }
+    - { role: nginx, dir: /roles/nginx }
+    - { role: nodejs, dir: /roles/nodejs }
+    - { role: memcached, dir: /roles/memcached }
+    - { role: supervisord, dir: /roles/supervisord }
+    - { role: redis, dir: /roles/redis }
+    # - { role: java, dir: /roles/java }
+    # - { role: jenkins, dir: /roles/jenkins }

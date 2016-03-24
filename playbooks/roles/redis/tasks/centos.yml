@@ -1,0 +1,20 @@
+---
+- name: Get Redis 3
+  get_url: url="http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz" dest='/usr/src'
+
+- name: Unpack Redis 3
+  unarchive: dest=/usr/src/ src="/usr/src/redis-{{ redis_version }}.tar.gz" copy=no
+
+- name: Compile and Install Redis
+  action: shell chdir="/usr/src/redis-{{ redis_version }}" {{ item }}
+  with_items:
+    - make
+    - make install
+
+- name: Increase Limits - Redis
+  action: lineinfile dest=/etc/security/limits.conf state=present line="{{ item }}"
+  with_items:
+    - "redis soft nofile 20480"
+    - "redis hard nofile 20480"
+  when:
+    increase_limits

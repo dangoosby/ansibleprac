@@ -1,0 +1,31 @@
+---
+# tasks file for common
+
+- name: Add EPEL repo file
+  yum: name={{ epel_release[ansible_distribution_major_version] }} state=present
+  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version|int >= 6
+
+- name: Add EPEL repo key
+  rpm_key: state=present key=/etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version|int >= 6
+
+- name: update YUM
+  yum: name="*" state=latest
+
+- name: Security Update
+  shell: yum update security
+
+- name: Install wget
+  yum: name=wget
+
+- name: Install GCC
+  yum: name=gcc*
+
+- name: Install TCL
+  yum: name=tcl
+
+- name: Install git
+  yum: name=git
+
+- name: Install vim
+  yum: name=vim state=latest

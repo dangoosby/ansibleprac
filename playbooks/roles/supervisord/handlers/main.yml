@@ -1,0 +1,6 @@
+---
+- name: reload supervisord
+  service: name={{ supervisor_service }} state=reload
+
+- name: restart supervisord
+  service: name={{ supervisor_service }} state=restarted

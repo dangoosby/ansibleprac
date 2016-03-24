@@ -1,0 +1,17 @@
+---
+ansible_nodejs_download_dir: '~/.ansible/download'
+ansible_nodejs_version: 'v5.5.0'
+ansible_nodejs_install_base_dir: '/opt/nodejs'
+ansible_nodejs_package: "node-{{ ansible_nodejs_version }}-linux-x64.tar.gz"
+ansible_nodejs_install_dir: "{{ ansible_nodejs_install_base_dir }}/node-{{ ansible_nodejs_version }}-linux-x64"
+ansible_nodejs_sha256sum: '3e593d91b6d2ad871efaaf8e9a17b3608ca98904959bcfb7c42e6acce89e80f4'
+ansible_nodejs_global_pkgs:
+  - { name: 'gulp', version: '3.9.0' }
+  - { name: 'grunt-cli', version: '0.1.13' }
+  - { name: 'express', version: '4.13.3' }
+  - { name: 'express-generator', version: '4.13.1' }
+  - { name: 'socket.io', version: '1.4.3' }
+  - { name: 'restify', version: '4.0.3' }
+  - { name: 'mocha', version: '2.3.4' }
+  - { name: 'chai', version: '3.4.1' }
+  - { name: 'lodash', version: '4.0.1' }

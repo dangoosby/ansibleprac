@@ -1,0 +1,23 @@
+---
+- name: Include CentOS vars
+  include_vars: centos.yml
+
+- include: centos.yml
+
+- name: Redis Configure
+  template:
+    src: redis.conf.j2
+    dest: "{{ redis_conf_path }}"
+    mode: 0644
+  # notify: restart redis
+
+- name: Create Redis Log Dir
+  file: path=/var/log/redis state=directory
+  sudo: yes
+
+- name: Create Redis Log File
+  file: path=/var/log/redis/redis-server.log state=touch
+  sudo: yes
+
+# - name: Start and Enable Redis
+  # shell: "redis-server --daemonize yes"
